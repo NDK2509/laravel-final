@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
     <div class="d-flex justify-content-center align-items-center" style="height: 50vh">
         <div class="w-50">

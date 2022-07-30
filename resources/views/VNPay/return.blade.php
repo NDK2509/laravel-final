@@ -19,7 +19,7 @@
 <body>
     <div class="container">
         <div class="header clearfix">
-            <h3 class="text-muted">VNPAY RESPONSE</h3>
+            <h3 class="text-muted">VNPAY RESULT</h3>
         </div>
         <div class="table-responsive">
             <div class="form-group">
@@ -67,6 +67,7 @@
         <p>
             &nbsp;
         </p>
+        <a href="/">Trở về trang chủ</a>
         <footer class="footer">
             <p>&copy; VNPAY {{date('Y')}} </p>
         </footer>

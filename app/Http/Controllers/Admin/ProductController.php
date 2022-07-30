@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller {
     public function index()
@@ -32,24 +32,21 @@ class ProductController extends Controller {
         $product->new = $request->inputNew;
         $product->id_type = $request->inputType;
         $product->save();
-        return redirect('/showadmin')->with('success', 'Đăng ký thành công');
+        return redirect('/admin');
     }
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('pageAdmin.formEdit')->with('product', $product);
+        return view('admin.product.edit')->with('product', $product);
     }
-    public function update(Request $request){
-        $id = $request->editId;
-
+    public function update(Request $request, $id){
         $product = product::find($id);
         if($request->hasFile('editImage')){
             $file = $request -> file ('editImage');
             $fileName=$file->getClientOriginalName('editImage');
             $file->move('source/image/product',$fileName);
-        }
-        if ($request->file('editImage')!=null){
-            $product ->image=$fileName;
+            $product->image = $fileName;
+
         }
         $product->name=$request->editName;
         // $product->image=$file_name;

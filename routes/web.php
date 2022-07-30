@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\Mail;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Page\CartController;
 use App\Http\Controllers\Page\CheckoutController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Page\PaymentControler;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Page\PageController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminLogedIn;
 
 Route::get("/test", function() {
     Mail::send("ky.nguyen23@student.passerellesnumeriques.org", "Test", view("mails.reset-password", ["user" => "NDK", "resetPwdToken" => "abc"])->render());
@@ -20,12 +22,14 @@ Route::get('/detail/{id}', [PageController::class, 'detail']);
 
 // ----------------- TRANG ADMIN ---------------
 Route::prefix("/admin/")->group(function() {
-    Route::get("", fn() => redirect()->route("dashboard"));
-    Route::get("dashboard", fn () => view("admin.dashboard"));
-    Route::prefix("product/")->group(function() {
-        Route::get("", [ProductController::class, "index"]);
+    Route::get("login", fn() => view("admin.login"));
+    Route::post("login", [AdminController::class, "login"])->name("adminLogin");
+    Route::prefix("")->middleware(AdminLogedIn::class)->group(function() {
+        Route::get("", [ProductController::class, "index"])->name("adminIndex");
         Route::get("create", fn () => view("admin.product.create"))->name("createProduct");
         Route::post("create", [ProductController::class, "create"])->name("postCreateProduct");
+        Route::get("edit/{id}", [ProductController::class, "edit"])->name("editProduct");
+        Route::post("edit/{id}", [ProductController::class, "update"])->name("updateProduct");
     });
 });
 

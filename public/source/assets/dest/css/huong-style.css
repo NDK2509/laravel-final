@@ -1,10 +1,4 @@
-.fixNav{
-  width: 100%;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  z-index: 100000000;
-}
+
 .cart-body{
 	z-index:999;
 }

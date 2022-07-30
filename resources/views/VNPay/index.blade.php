@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('title', 'Create payment')
 @section('css')
     <link href="/source/assets/dest/css/bootstrap.min.css" rel="stylesheet" />

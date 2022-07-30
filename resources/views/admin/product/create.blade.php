@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.admin')
 @section('content')
     <div class="space50">&nbsp;</div>
     <div class="container beta-relative">
@@ -35,19 +35,24 @@
 
                 <div class="form-group">
                     <label for='inputNew'>New</label>
-                    <input type="number" min=0 class="form-control" name="inputNew" id="inputNew" placeholder="Enter new"
-                        required>
+                    <select name="inputNew" class="form-select">
+                        <option value="1" selected>true</option>
+                        <option value="0">false</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for='inputType'>Type</label>
-                    <input type="text" class="form-control" name="inputType" id="inputType" placeholder="Enter type"
-                        required>
+                    <select name="inputType" class="form-select">
+                        @foreach ($types as $type) 
+                            <option value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for='inputImage'>Image file</label>
-                    <input type="file" class="form-control-file" name="inputImage" id="inputImage" required>
+                    <input type="file" class="form-control" name="inputImage" id="inputImage" required>
                 </div>
 
                 <div class="form-group">

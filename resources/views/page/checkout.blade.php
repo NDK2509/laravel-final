@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('title', 'Checkout')
 @section('content')
     <div class="container">
@@ -19,14 +19,14 @@
                             <label for="gender">Giới tính</label>
                             <div class="form-check" style="width: 25%">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender"
+                                    <input type="radio" class="" name="gender"
                                         value="Nam" checked>
                                     Nam
                                     </label>
                                 </div>
                             <div class="form-check" style="width: 25%">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="gender"
+                                    <input type="radio" class="" name="gender"
                                         value="Nữ">
                                     Nữ
                                     </label>
