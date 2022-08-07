@@ -68,7 +68,6 @@ class UserController extends Controller
         if ($user == null) {
             return redirect("/");
         }
-        $user->reset_password_token = "";
         return view("users.update-password", ["email" => $user->email]);
     }
     public function updatePassword(Request $request) {
@@ -82,6 +81,7 @@ class UserController extends Controller
 
         $user = User::where("email", $request->email)->first();
         $user->password = bcrypt($request->password);
+        $user->reset_password_token = "";
         $user->save();
         echo "<script>alert('Đổi mật khẩu thành công!');window.location.assign('/login')</script>";
     }
